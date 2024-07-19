@@ -14,7 +14,8 @@ st.set_page_config(page_title="아띠 GPT", page_icon="🧊")
 st.title("🧊 느린학습자용GPT")
 
 # API KEY 설정
-os.environ["OPENAI_API_KEY"] = "sk-proj-u9NFgFiTSJTnHyvOOzq3T3BlbkFJ9aoGPp7qILJ2AHrswxyN"
+os.environ["OPENAI_API_KEY"] = "aaa"
+#"sk-proj-u9NFgFiTSJTnHyvOOzq3T3BlbkFJ9aoGPp7qILJ2AHrswxyN"
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
