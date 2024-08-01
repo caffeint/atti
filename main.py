@@ -21,7 +21,7 @@ global retriever
 
 load_dotenv()
 st.set_page_config(page_title="아띠 GPT", page_icon="🐢")
-st.title("🐢 똑띠")
+st.title("🐢 아띠-GPT")
 
 # API KEY 설정
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
@@ -106,7 +106,7 @@ if user_input := st.chat_input("메세지를 입력해주세요."):
         # 1-1 openai
         fine_llm = ChatOpenAI(
             streaming=True,
-            model="gpt-4o-mini",
+            model="ft:gpt-3.5-turbo-0125:personal:ft-atti:9rTplgkg",
             temperature=0,
         )
         # 1-2 ollama model load
@@ -123,7 +123,7 @@ if user_input := st.chat_input("메세지를 입력해주세요."):
                     # "당신은 세상의 모든 종류의 지식에 통달한 천재 학자이며, 경계선 지능인들을 가르치는 선생입니다. 경게선 지능인들도 이해하기쉽도록 사용자의 질문을 CoT 기법을 적용하여, 차근차근 생각해보고 오류는 없는지 스스로 생각하여 답변하세오. 답변은 경계선 지능인들이 이해하기 쉬운 어휘만을 사용하며 짧게 한국어로 해야합니다. 필요하면 쉬운 예시를 들어주세요. 안전에 관련해서 유의사항이 있으면 강조해도 좋습니다. 레퍼런스가 되는 논문이나 링크를 참고하고, 첨부하는 행동을 적극 권장합니다."
                     "You are the world's leading expert on borderline intelligence learning, and a teacher who teaches borderline intelligentsia. \
                     To make it easier for intelligents to understand, apply the CoT technique to the user's question, think step by step, and think for yourself to answer if there are any errors. \
-                    The answer should be in friendly and short Korean, using only vocabulary that is easy for borderline intelligents to understand. \
+                    The answer should be in friendly and Korean, using only vocabulary that is easy for borderline intelligents to understand. \
                     If necessary, give me an easy example. \
                     If you have any safety precautions, you can emphasize them. \
                     Please refer to the reference paper or link and highly recommend attaching it"
@@ -151,7 +151,7 @@ if user_input := st.chat_input("메세지를 입력해주세요."):
         )
 
         # 터미널에 응답 데이터 출력
-        # print(f"{fine_response.content}")
+        print(f"{fine_response.content}")
 
         ###################################
         # GPT LLM을 사용하여 AI의 답변을 생성
@@ -173,7 +173,7 @@ if user_input := st.chat_input("메세지를 입력해주세요."):
                     f"You are the world's leading expert on borderline intelligence learning.\
                 Your colleague, who has the ability to match you, answered [{fine_response.content}] to a question from a borderline intelligent. \
                 Please think about it again by applying the COT technique for this answer and make up for the shortcomings. \
-                Answers should only use vocabulary that is easy for borderline intelligents to understand, and should be answered in short Korean."
+                Answers should only use vocabulary that is easy for borderline intelligents to understand, and should be answered in Korean."
                 ),
                 # 대화 기록을 변수로 사용, history 가 MessageHistory 의 key 가 됨
                 MessagesPlaceholder(variable_name="history"),
@@ -197,7 +197,7 @@ if user_input := st.chat_input("메세지를 입력해주세요."):
             config={"configurable": {"session_id": session_id}},
         )
 
-        # print(f"///////////////\n {GPT_response.content}")
+        print(f"///////////////\n {GPT_response.content}")
 
         st.session_state["messages"].append(
             ChatMessage(role="assistant", content=GPT_response.content)

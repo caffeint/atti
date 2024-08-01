@@ -20,7 +20,7 @@ if not os.path.exists(".cache/embeddings"):
     os.mkdir(".cache/embeddings")
 
 st.set_page_config(page_title="아띠 GPT", page_icon="🐢")
-st.title("🐢 랙띠")
+st.title("🐢 아띠-RAG")
 
 # 처음 1번만 실행하기 위한 코드
 if "messages" not in st.session_state:

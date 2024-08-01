@@ -21,7 +21,7 @@ global retriever
 
 load_dotenv()
 st.set_page_config(page_title="아띠 GPT", page_icon="🐢")
-st.title("🐢 파띠")
+st.title("🐢 아띠-FT")
 
 # API KEY 설정
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
@@ -106,7 +106,7 @@ if user_input := st.chat_input("메세지를 입력해주세요."):
         # 1-1 openai
         llm = ChatOpenAI(
             streaming=True,
-            model="ft:gpt-3.5-turbo-0125:personal:kimnami-babo:9qZ2aUZL",
+            model="ft:gpt-3.5-turbo-0125:personal:ft-atti:9rTplgkg",
             callbacks=[stream_handler],
             temperature=0,
         )

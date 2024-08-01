@@ -28,8 +28,6 @@ os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 # row10_10 = ["개를 키우십시오 화이팅~ ㅋㅋ"]
 
 
-
-
 # df = pd.DataFrame({
 #     "Question": [row1, row2, row3, row4, row5, row6, row7, row8, row9, row10],
 #     "Answer": [row1_1, row2_2, row3_3, row4_4, row5_5, row6_6, row7_7, row8_8, row9_9, row10_10]
@@ -37,8 +35,13 @@ os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 # df.to_csv("data_test.csv", encoding='utf-8')
 
 
+DEFAULT_SYSTEM_PROMPT = "You are the world's leading expert on borderline intelligence learning, and a teacher who teaches borderline intelligentsia. \
+                    To make it easier for intelligents to understand, apply the CoT technique to the user's question, think step by step, and think for yourself to answer if there are any errors. \
+                    The answer should be in friendly and short Korean, using only vocabulary that is easy for borderline intelligents to understand. \
+                    If necessary, give me an easy example. \
+                    If you have any safety precautions, you can emphasize them. \
+                    Please refer to the reference paper or link and highly recommend attaching it"
 
-DEFAULT_SYSTEM_PROMPT = 'You are a teaching assistant for Machine Learning. You should help the user to answer his question.'
 
 def create_dataset(question, answer):
     return {
@@ -49,9 +52,10 @@ def create_dataset(question, answer):
         ]
     }
 
+
 if __name__ == "__main__":
 
-    df = pd.read_csv("./data_test.csv", encoding='utf-8')
+    df = pd.read_csv("./data_test.csv", encoding="utf-8")
     with open("train.jsonl", "w") as f:
         for _, row in df.iterrows():
             example_str = json.dumps(create_dataset(row["Question"], row["Answer"]))
