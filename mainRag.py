@@ -40,8 +40,6 @@ with st.sidebar:
     clear_btn = st.button("대화기록 초기화")
 
 
-
-
 # 파일이 업로드 되었을 때
 if uploaded_file:
     # 파일 업로드 후 retriever 생성 (작업시간이 오래 걸릴 예정...)
@@ -52,7 +50,7 @@ if uploaded_file:
 # 초기화 버튼이 눌리면...
 if clear_btn:
     st.session_state["messages"] = []
-    st.experimental_rerun()
+    st.rerun()
 
 # 이전 대화 기록 출력
 print_messages()
